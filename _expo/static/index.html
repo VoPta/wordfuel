@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>WordFuel - Expand Your Vocabulary</title>
+  <style>
+    /* Ensure the body takes up the full height of the viewport */
+    html, body, #root {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* Better loading experience */
+    .expo-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #ffffff;
+      color: #333;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      .expo-loading {
+        background-color: #1a1a1a;
+        color: #fff;
+      }
+    }
+    
+    .expo-loading-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .expo-loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top-color: #2196F3;
+      animation: spin 1s ease-in-out infinite;
+    }
+    
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  
+  <!-- GitHub Pages routing script - handle redirects for SPA -->
+  <script>
+    // Check if we need to redirect
+    (function(){
+      var redirect = sessionStorage.redirect;
+      delete sessionStorage.redirect;
+      if (redirect && redirect != location.href) {
+        var cleanRedirect = redirect.replace(location.origin, '');
+        // Ensure we maintain the /wordfuel/ base path
+        if (cleanRedirect.indexOf('/wordfuel/') === 0) {
+          history.replaceState(null, null, cleanRedirect);
+        } else {
+          history.replaceState(null, null, '/wordfuel/' + cleanRedirect.replace(/^\//, ''));
+        }
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div id="root">
+    <div class="expo-loading">
+      <div class="expo-loading-title">WordFuel</div>
+      <div class="expo-loading-spinner"></div>
+      <p>Loading your vocabulary fuel...</p>
+    </div>
+  </div>
+</body>
+</html>
