@@ -55,6 +55,15 @@
   
   <!-- GitHub Pages routing script - handle redirects for SPA -->
   <script>
+    // Initialize environment variables
+    window.process = window.process || {};
+    window.process.env = window.process.env || {};
+    window.process.env.NODE_ENV = 'production';
+    
+    // Define base path for the application
+    window.EXPO_ROUTER_APP_ROOT = '/wordfuel';
+    window.EXPO_PUBLIC_PATH = '/wordfuel/';
+    
     // Check if we need to redirect
     (function(){
       var redirect = sessionStorage.redirect;
@@ -69,14 +78,6 @@
         }
       }
     })();
-
-    // Define base path for the application
-    window.EXPO_ROUTER_APP_ROOT = '/wordfuel';
-    
-    // Fix for React Native Web on GitHub Pages
-    window.process = window.process || {};
-    window.process.env = window.process.env || {};
-    window.process.env.NODE_ENV = 'production';
   </script>
 </head>
 <body>
@@ -87,5 +88,18 @@
       <p>Loading your vocabulary fuel...</p>
     </div>
   </div>
+  <script>
+    // Ensure the app initializes properly
+    window.addEventListener('load', function() {
+      // Force a reload if we're stuck on the loading screen
+      if (document.querySelector('.expo-loading')) {
+        setTimeout(function() {
+          if (document.querySelector('.expo-loading')) {
+            window.location.reload();
+          }
+        }, 5000);
+      }
+    });
+  </script>
 </body>
 </html>
