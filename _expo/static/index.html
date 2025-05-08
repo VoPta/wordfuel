@@ -92,13 +92,11 @@
   <script>
     // Ensure the app initializes properly
     window.addEventListener('load', function() {
-      // Clear loading screen after a short delay
-      setTimeout(function() {
-        const root = document.getElementById('root');
-        if (root) {
-          root.innerHTML = '';
-        }
-      }, 1000);
+      // Let React handle the mounting
+      const loadingScreen = document.querySelector('.expo-loading');
+      if (loadingScreen) {
+        loadingScreen.style.display = 'none';
+      }
     });
   </script>
 </body>
