@@ -53,24 +53,23 @@
     }
   </style>
   
-  <!-- GitHub Pages routing script - handle redirects for SPA -->
+  <!-- Initialize environment -->
   <script>
-    // Initialize environment variables
+    // Set up environment variables
     window.process = window.process || {};
     window.process.env = window.process.env || {};
     window.process.env.NODE_ENV = 'production';
     
-    // Define base path for the application
+    // Set base path for GitHub Pages
     window.EXPO_ROUTER_APP_ROOT = '/wordfuel';
     window.EXPO_PUBLIC_PATH = '/wordfuel/';
     
-    // Check if we need to redirect
+    // Handle redirects
     (function(){
       var redirect = sessionStorage.redirect;
       delete sessionStorage.redirect;
       if (redirect && redirect != location.href) {
         var cleanRedirect = redirect.replace(location.origin, '');
-        // Ensure we maintain the /wordfuel/ base path
         if (cleanRedirect.indexOf('/wordfuel/') === 0) {
           history.replaceState(null, null, cleanRedirect);
         } else {
@@ -88,17 +87,18 @@
       <p>Loading your vocabulary fuel...</p>
     </div>
   </div>
+  
+  <!-- Load the app -->
   <script>
     // Ensure the app initializes properly
     window.addEventListener('load', function() {
-      // Force a reload if we're stuck on the loading screen
-      if (document.querySelector('.expo-loading')) {
-        setTimeout(function() {
-          if (document.querySelector('.expo-loading')) {
-            window.location.reload();
-          }
-        }, 5000);
-      }
+      // Clear loading screen after a short delay
+      setTimeout(function() {
+        const root = document.getElementById('root');
+        if (root) {
+          root.innerHTML = '';
+        }
+      }, 1000);
     });
   </script>
 </body>
