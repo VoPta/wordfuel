@@ -10,8 +10,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "predeploy": "npx expo export --platform web",
-    "deploy": "gh-pages -d dist"
+    "predeploy": "npx expo export --platform web && node scripts/copy-web-files.js",
+    "deploy": "gh-pages -d dist --repo https://github.com/VoPta/wordfuel.git",
+    "deploy-manual": "node scripts/deploy-gh-pages.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",

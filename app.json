@@ -30,7 +30,8 @@
       "themeColor": "#2196F3",
       "backgroundColor": "#ffffff",
       "lang": "en",
-      "scope": "/wordfuel/"
+      "scope": "/wordfuel/",
+      "publicPath": "/wordfuel/"
     },
     "plugins": [
       "expo-router",

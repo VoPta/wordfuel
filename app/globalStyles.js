@@ -1,56 +1,46 @@
 import { Platform } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 // Apply global styles for web platform
 export const applyGlobalWebStyles = () => {
-  if (Platform.OS === 'web') {
-    // Add a style tag to the document head
+  if (typeof document !== 'undefined') {
+    // Create a style element
     const style = document.createElement('style');
     style.textContent = `
+      html, body, #root {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      
+      /* Custom scrollbar styling */
       ::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 7px;
+        height: 7px;
       }
       
       ::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.1);
       }
       
       ::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.3);
         border-radius: 10px;
       }
       
       ::-webkit-scrollbar-thumb:hover {
-        background: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.5);
       }
       
-      /* Dark mode scrollbars */
-      @media (prefers-color-scheme: dark) {
-        ::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.2);
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-          background: rgba(255, 255, 255, 0.3);
-        }
-      }
-      
-      /* Hide scrollbar for Chrome, Safari and Opera in small components, but maintain functionality */
-      .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      
-      /* Hide scrollbar for IE, Edge and Firefox */
-      .hide-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+      /* Fix for GitHub Pages absolute path issues */
+      a[href^="/"] {
+        /* Replace all absolute paths with the correct base path */
+        href: attr(href url('/wordfuel'));
       }
     `;
+    
+    // Append the style element to the head
     document.head.appendChild(style);
   }
 };

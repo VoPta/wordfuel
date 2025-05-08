@@ -42,7 +42,7 @@ export default function HomeScreen() {
   const handleGetDailyDose = () => {
     // Navigate to the TextScreen with the selected language and mode
     router.push({
-      pathname: '/text',
+      pathname: "/text",
       params: { language, mode }
     });
   };

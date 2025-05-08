@@ -4,6 +4,8 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 import { Provider as PaperProvider } from 'react-native-paper';
+import { useEffect } from 'react';
+import { Platform } from 'react-native';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -12,6 +14,16 @@ export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
+
+  // Fix for GitHub Pages routing
+  useEffect(() => {
+    if (Platform.OS === 'web') {
+      // Add base path for GitHub Pages
+      const metaBase = document.createElement('base');
+      metaBase.href = '/wordfuel/';
+      document.head.appendChild(metaBase);
+    }
+  }, []);
 
   if (!loaded) {
     // Async font loading only occurs in development.
